@@ -7,21 +7,28 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:4001/users/")
+    fetch("http://localhost:4001/users/1")
       .then(resp => resp.json())
       .then(user => {
-        this.setState({user: user})
+        // let name, favorite_food, hobbies
+        // ({ name, favorite_food, hobbies } = user )
+        this.setState({
+          user: user
+        })
       })
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
-        <label>{this.state.user ? this.state.user.users[0].name : "THE ASYNCHRONOUS FETCH HAS NOT BEEN COMPLETED YET"}</label>
+        <h1>{this.state.user.name}</h1>
+        <h2>Favorite Food: {this.state.user.favorite_food}</h2>
+        <h2>Hobbies: {this.state.user.hobbies}</h2>
       </div>
     );
   }
 }
 
 export default App;
+
+// ? this.state.user.name : "THE ASYNCHRONOUS FETCH HAS NOT BEEN COMPLETED YET"}
